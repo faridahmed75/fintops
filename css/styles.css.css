@@ -1,0 +1,47 @@
+/* Custom CSS Extensions for FintOps */
+
+/* Smooth Scrolling Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080B11;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0052FF;
+}
+
+/* Custom Cursor Effects */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: default;
+  }
+}
+
+/* Glassmorphic Navbar Active State */
+.navbar-scrolled {
+  background-color: rgba(8, 11, 17, 0.85) !important;
+  backdrop-filter: blur(16px);
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Line Clamp Utilities */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
