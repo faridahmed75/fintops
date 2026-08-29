@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>FintOps — The Future of Finance, Explained</title>
+  <meta name="title" content="FintOps — The Future of Finance, Explained" />
+  <meta name="description" content="FintOps explores the future of fintech through podcasts, insights, industry updates, and practical courses." />
+  <link rel="canonical" href="https://fintops.info/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fintops.info/" />
+  <meta property="og:title" content="FintOps — The Future of Finance, Explained" />
+  <meta property="og:description" content="Podcasts, insights, and courses for the people shaping the future of fintech." />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://fintops.info/" />
+  <meta property="twitter:title" content="FintOps — The Future of Finance, Explained" />
+  <meta property="twitter:description" content="Podcasts, insights, and courses for the people shaping the future of fintech." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            fintech: {
+              bg: '#080B11',
+              card: '#0F1523',
+              border: 'rgba(255, 255, 255, 0.08)',
+              accent: '#00F0FF',
+              blue: '#0052FF',
+              glow: 'rgba(0, 82, 255, 0.15)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-[#F8FAFC] dark:bg-fintech-bg text-slate-800 dark:text-slate-200 transition-colors duration-300 font-sans selection:bg-fintech-blue selection:text-white">
+
+  <div id="custom-cursor" class="fixed w-4 h-4 bg-fintech-accent rounded-full pointer-events-none z-50 transition-transform duration-100 opacity-0 hidden md:block mix-blend-difference"></div>
+
+  <div id="announcement-bar" class="bg-gradient-to-r from-blue-900/40 via-fintech-blue/30 to-blue-900/40 border-b border-fintech-border text-xs sm:text-sm py-2 px-4 relative z-40 transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-slate-200">
+      <div class="flex items-center gap-2 mx-auto sm:mx-0">
+        <span class="bg-fintech-accent/20 text-fintech-accent text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">New</span>
+        <span>🚀 <strong>FintOps Podcast Ep. 01:</strong> Conversations shaping the future of finance</span>
+        <a href="#featured-podcast" class="inline-flex items-center gap-1 text-fintech-accent hover:underline font-semibold ml-2">Listen now <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+      </div>
+      <button id="close-announcement" aria-label="Close Announcement" class="text-slate-400 hover:text-white transition-colors hidden sm:block">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </div>
+
+  <header id="navbar" class="sticky top-0 z-30 transition-all duration-300 border-b border-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-fintech-blue to-fintech-accent flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-fintech-blue/20">
+          F
+        </div>
+        <span class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Fint<span class="text-fintech-accent">Ops</span></span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600 dark:text-slate-300">
+        <a href="#podcast" class="hover:text-fintech-accent transition-colors">Podcast</a>
+        <a href="#articles" class="hover:text-fintech-accent transition-colors">Articles</a>
+        <a href="#courses" class="hover:text-fintech-accent transition-colors">Courses</a>
+        <a href="#about" class="hover:text-fintech-accent transition-colors">About</a>
+      </nav>
+
+      <div class="hidden md:flex items-center gap-4">
+        <button id="search-btn" aria-label="Search" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+          <i data-lucide="search" class="w-5 h-5"></i>
+        </button>
+        <button id="theme-toggle" aria-label="Toggle Theme" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+          <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+          <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+        </button>
+        <a href="#courses" class="px-4 py-2 text-sm font-semibold text-slate-900 dark:text-white hover:text-fintech-accent transition-colors">Login</a>
+        <a href="#courses" class="px-4 py-2 text-sm font-semibold rounded-lg bg-fintech-blue hover:bg-blue-600 text-white shadow-lg shadow-fintech-blue/25 transition-all hover:-translate-y-0.5">Explore Courses</a>
+      </div>
+
+      <div class="flex items-center gap-3 md:hidden">
+        <button id="theme-toggle-mobile" aria-label="Toggle Theme" class="p-2 rounded-lg text-slate-400">
+          <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+          <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+        </button>
+        <button id="mobile-menu-btn" aria-label="Open Navigation" class="p-2 text-slate-200">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-fintech-bg/95 backdrop-blur-xl z-50 flex flex-col p-6 hidden transition-all duration-300">
+      <div class="flex justify-between items-center mb-8">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-fintech-blue to-fintech-accent flex items-center justify-center text-white font-extrabold text-lg">F</div>
+          <span class="text-2xl font-bold tracking-tight text-white">Fint<span class="text-fintech-accent">Ops</span></span>
+        </div>
+        <button id="close-mobile-menu" aria-label="Close Navigation" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-7 h-7"></i>
+        </button>
+      </div>
+
+      <nav class="flex flex-col gap-6 text-lg font-medium text-slate-300 mb-8">
+        <a href="#podcast" class="mobile-link hover:text-fintech-accent">Podcast</a>
+        <a href="#articles" class="mobile-link hover:text-fintech-accent">Articles</a>
+        <a href="#courses" class="mobile-link hover:text-fintech-accent">Courses</a>
+        <a href="#about" class="mobile-link hover:text-fintech-accent">About</a>
+      </nav>
+
+      <div class="mt-auto flex flex-col gap-4">
+        <button id="mobile-search-trigger" class="flex items-center justify-center gap-2 py-3 rounded-lg border border-fintech-border text-slate-300">
+          <i data-lucide="search" class="w-4 h-4"></i> Search FintOps
+        </button>
+        <a href="#" class="w-full text-center py-3 rounded-lg font-semibold border border-fintech-border text-white">Login</a>
+        <a href="#courses" class="w-full text-center py-3 rounded-lg font-semibold bg-fintech-blue text-white shadow-lg">Explore Courses</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden pt-8 pb-16">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,#0052FF1A,transparent_70%)] pointer-events-none"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 text-center lg:text-left space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-fintech-border bg-white/5 backdrop-blur-md text-xs font-semibold text-fintech-accent">
+            <span class="flex h-2 w-2 rounded-full bg-fintech-accent animate-ping"></span>
+            Fintech Media &amp; Learning Platform
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+            The Future of Finance, <span class="bg-gradient-to-r from-fintech-accent via-blue-400 to-indigo-400 bg-clip-text text-transparent">Explained.</span>
+          </h1>
+
+          <p class="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto lg:mx-0 font-normal">
+            Podcasts, insights, and courses for the people shaping the future of fintech, digital banking, and financial infrastructure.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#podcast" class="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-fintech-blue hover:bg-blue-600 text-white font-semibold flex items-center justify-center gap-2 transition-all shadow-lg shadow-fintech-blue/25 hover:-translate-y-0.5">
+              Explore Podcasts <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <a href="#courses" class="w-full sm:w-auto px-6 py-3.5 rounded-lg border border-fintech-border hover:bg-white/5 text-slate-900 dark:text-slate-200 font-semibold transition-all">
+              Explore Courses
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 flex justify-center">
+          <div class="relative w-full max-w-md aspect-square rounded-2xl border border-fintech-border bg-fintech-card/50 backdrop-blur-md p-8 flex items-center justify-center shadow-2xl shadow-fintech-blue/10">
+            <svg class="w-full h-full" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="200" y1="200" x2="100" y2="100" stroke="#0052FF" stroke-width="1.5" stroke-dasharray="4 4" class="animate-pulse" />
+              <line x1="200" y1="200" x2="300" y2="100" stroke="#0052FF" stroke-width="1.5" stroke-dasharray="4 4" />
+              <line x1="200" y1="200" x2="300" y2="300" stroke="#0052FF" stroke-width="1.5" stroke-dasharray="4 4" />
+              <line x1="200" y1="200" x2="100" y2="300" stroke="#0052FF" stroke-width="1.5" stroke-dasharray="4 4" class="animate-pulse" />
+              <line x1="200" y1="200" x2="200" y2="60" stroke="#00F0FF" stroke-width="1.5" />
+              <line x1="200" y1="200" x2="200" y2="340" stroke="#00F0FF" stroke-width="1.5" />
+
+              <circle cx="200" cy="200" r="45" fill="#0F1523" stroke="#00F0FF" stroke-width="2" />
+              <circle cx="200" cy="200" r="35" fill="#0052FF" fill-opacity="0.2" />
+              <text x="200" y="204" text-anchor="middle" fill="#FFFFFF" font-weight="bold" font-size="12">FINANCE</text>
+
+              <g transform="translate(100, 100)">
+                <circle cx="0" cy="0" r="28" fill="#0F1523" stroke="#0052FF" stroke-width="1.5" />
+                <text x="0" y="4" text-anchor="middle" fill="#00F0FF" font-size="10" font-weight="600">AI</text>
+              </g>
+
+              <g transform="translate(300, 100)">
+                <circle cx="0" cy="0" r="28" fill="#0F1523" stroke="#0052FF" stroke-width="1.5" />
+                <text x="0" y="4" text-anchor="middle" fill="#00F0FF" font-size="9" font-weight="600">PAYMENTS</text>
+              </g>
+
+              <g transform="translate(300, 300)">
+                <circle cx="0" cy="0" r="28" fill="#0F1523" stroke="#0052FF" stroke-width="1.5" />
+                <text x="0" y="4" text-anchor="middle" fill="#00F0FF" font-size="8" font-weight="600">BLOCKCHAIN</text>
+              </g>
+
+              <g transform="translate(100, 300)">
+                <circle cx="0" cy="0" r="28" fill="#0F1523" stroke="#0052FF" stroke-width="1.5" />
+                <text x="0" y="4" text-anchor="middle" fill="#00F0FF" font-size="9" font-weight="600">BANKING</text>
+              </g>
+
+              <circle cx="150" cy="150" r="3" fill="#00F0FF" class="animate-ping" />
+              <circle cx="250" cy="250" r="3" fill="#00F0FF" class="animate-ping" />
+            </svg>
+            
+            <div class="absolute top-4 right-4 bg-fintech-bg/80 border border-fintech-border px-3 py-1 rounded-md text-[10px] text-slate-300 font-mono">
+              REAL-TIME DATA
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="border-y border-fintech-border py-8 bg-slate-900/40 backdrop-blur-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-xs font-semibold tracking-wider text-slate-400 uppercase mb-6">
+          Exploring the technologies shaping modern finance
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-slate-400 font-semibold text-sm">
+          <span class="hover:text-fintech-accent transition-colors cursor-default">Digital Banking</span>
+          <span class="text-fintech-border">•</span>
+          <span class="hover:text-fintech-accent transition-colors cursor-default">Payments Infrastructure</span>
+          <span class="text-fintech-border">•</span>
+          <span class="hover:text-fintech-accent transition-colors cursor-default">AI &amp; Risk Analytics</span>
+          <span class="text-fintech-border">•</span>
+          <span class="hover:text-fintech-accent transition-colors cursor-default">Blockchain Integration</span>
+          <span class="text-fintech-border">•</span>
+          <span class="hover:text-fintech-accent transition-colors cursor-default">Open Banking APIs</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="podcast" class="py-20 border-b border-fintech-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Ideas Worth Listening To</h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-2">Conversations with the pioneers building the next era of finance.</p>
+        </div>
+
+        <div class="rounded-2xl border border-fintech-border bg-fintech-card p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden">
+          <div class="lg:col-span-5 relative aspect-square rounded-xl bg-gradient-to-br from-blue-900 to-fintech-bg border border-fintech-border flex items-center justify-center p-8 overflow-hidden group">
+            <div class="absolute inset-0 bg-fintech-blue/10 group-hover:bg-fintech-blue/20 transition-all"></div>
+            <i data-lucide="mic" class="w-24 h-24 text-fintech-accent stroke-[1.5] relative z-10"></i>
+            <span class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs text-slate-300">EPISODE 01</span>
+          </div>
+
+          <div class="lg:col-span-7 space-y-6">
+            <div class="flex items-center gap-3">
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-fintech-blue/20 text-fintech-accent font-semibold">FintOps Podcast</span>
+              <span class="text-xs text-slate-400">42 min · Aug 2026</span>
+            </div>
+
+            <h3 class="text-2xl sm:text-3xl font-bold text-white">The Future of Digital Payments &amp; Settlement Networks</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              How modern payment rail technology, real-time infrastructure, and evolving consumer behavior are fundamentally reshaping how money flows around the globe.
+            </p>
+
+            <div class="pt-2">
+              <p class="text-xs text-slate-400 uppercase font-mono tracking-wider">Guest</p>
+              <p class="text-sm font-semibold text-slate-200">Sarah Jenkins — VP of Infrastructure, PayGlobal</p>
+            </div>
+
+            <div class="pt-4 border-t border-fintech-border space-y-3">
+              <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
+                <span id="player-time">0:00</span>
+                <span>42:18</span>
+              </div>
+              <div id="progress-bar" class="w-full h-1.5 bg-slate-800 rounded-full cursor-pointer relative overflow-hidden">
+                <div id="progress-fill" class="h-full bg-fintech-accent w-0 transition-all duration-150"></div>
+              </div>
+              
+              <div class="flex items-center gap-4 pt-2">
+                <button id="play-btn" class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-fintech-accent text-slate-950 font-bold hover:bg-cyan-300 transition-colors">
+                  <i id="play-icon" data-lucide="play" class="w-4 h-4 fill-current"></i>
+                  <span id="play-text">Play Episode</span>
+                </button>
+                <button class="px-4 py-2 rounded-lg border border-fintech-border text-xs font-semibold text-slate-300 hover:bg-white/5 transition-colors flex items-center gap-2">
+                  <i data-lucide="radio" class="w-4 h-4"></i> Spotify
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="articles" class="py-20 border-b border-fintech-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">What's Happening in Fintech</h2>
+            <p class="text-slate-600 dark:text-slate-400 mt-2">Stay informed on the technological shifts altering money and markets.</p>
+          </div>
+          <a href="#" class="mt-4 md:mt-0 text-sm font-semibold text-fintech-accent hover:underline flex items-center gap-1">View All Updates <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <article class="p-6 rounded-xl border border-fintech-border bg-fintech-card/40 hover:bg-fintech-card transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group">
+            <div class="space-y-3">
+              <span class="text-xs font-mono text-fintech-accent">AI &amp; FINTECH</span>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-fintech-accent transition-colors">How Generative AI Is Streamlining Credit Underwriting</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3">Automated machine learning models are analyzing non-traditional data points to democratize access to lending.</p>
+            </div>
+            <div class="pt-6 flex items-center justify-between text-xs text-slate-400 border-t border-fintech-border/50 mt-4">
+              <span>5 min read</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-fintech-accent"></i>
+            </div>
+          </article>
+
+          <article class="p-6 rounded-xl border border-fintech-border bg-fintech-card/40 hover:bg-fintech-card transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group">
+            <div class="space-y-3">
+              <span class="text-xs font-mono text-fintech-accent">PAYMENTS</span>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-fintech-accent transition-colors">Cross-Border Settlement &amp; CBDC Pilots in 2026</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3">Central banks globally are accelerating real-time interoperability testing for sovereign digital currencies.</p>
+            </div>
+            <div class="pt-6 flex items-center justify-between text-xs text-slate-400 border-t border-fintech-border/50 mt-4">
+              <span>7 min read</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-fintech-accent"></i>
+            </div>
+          </article>
+
+          <article class="p-6 rounded-xl border border-fintech-border bg-fintech-card/40 hover:bg-fintech-card transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group">
+            <div class="space-y-3">
+              <span class="text-xs font-mono text-fintech-accent">DIGITAL BANKING</span>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-fintech-accent transition-colors">The Unbundling of Core Banking Engines</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3">Legacy mainframes are giving way to cloud-native, API-first microservice architectures.</p>
+            </div>
+            <div class="pt-6 flex items-center justify-between text-xs text-slate-400 border-t border-fintech-border/50 mt-4">
+              <span>4 min read</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-fintech-accent"></i>
+            </div>
+          </article>
+
+          <article class="p-6 rounded-xl border border-fintech-border bg-fintech-card/40 hover:bg-fintech-card transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group">
+            <div class="space-y-3">
+              <span class="text-xs font-mono text-fintech-accent">BLOCKCHAIN</span>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-fintech-accent transition-colors">Real World Asset Tokenization Scale</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3">Institutional interest pivots toward on-chain treasury bills, real estate fractions, and private credit.</p>
+            </div>
+            <div class="pt-6 flex items-center justify-between text-xs text-slate-400 border-t border-fintech-border/50 mt-4">
+              <span>6 min read</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-fintech-accent"></i>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 border-b border-fintech-border bg-slate-900/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <span class="text-xs font-mono text-fintech-accent uppercase tracking-widest">Editorial Insight</span>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-4">
+          <div class="lg:col-span-7 space-y-4">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">How Artificial Intelligence Is Reshaping Risk &amp; Fraud Infrastructure</h2>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              From real-time behavioral biometric evaluation to automated AML flag investigations, machine learning algorithms are moving from auxiliary tools to core operational layers inside tier-one banks.
+            </p>
+            <div class="flex items-center gap-4 text-xs text-slate-400 font-mono pt-2">
+              <span>By Editorial Team</span>
+              <span>•</span>
+              <span>8 min read</span>
+            </div>
+            <div class="pt-2">
+              <a href="#" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white/10 border border-fintech-border font-semibold text-sm hover:bg-white/20 transition-all">Read Full Deep Dive <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+          </div>
+          <div class="lg:col-span-5 aspect-video lg:aspect-square bg-gradient-to-tr from-fintech-blue/30 via-fintech-card to-fintech-bg border border-fintech-border rounded-xl p-6 flex flex-col justify-between">
+            <i data-lucide="cpu" class="w-12 h-12 text-fintech-accent"></i>
+            <blockquote class="text-sm italic text-slate-300">"The next decade in finance won't be defined by who has the physical branch network, but who has the cleanest training data and fastest decisioning API."</blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 border-b border-fintech-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Explore the Fintech Universe</h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-2">Comprehensive domain coverage across the technological landscape.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div class="p-5 rounded-xl border border-fintech-border bg-fintech-card/30 hover:border-fintech-accent/50 transition-all group cursor-pointer">
+            <i data-lucide="credit-card" class="w-6 h-6 text-fintech-accent mb-3"></i>
+            <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-fintech-accent transition-colors">Payments</h3>
+            <p class="text-xs text-slate-400 mt-1">Rails, gateways, &amp; wallets</p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-fintech-border bg-fintech-card/30 hover:border-fintech-accent/50 transition-all group cursor-pointer">
+            <i data-lucide="landmark" class="w-6 h-6 text-fintech-accent mb-3"></i>
+            <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-fintech-accent transition-colors">Digital Banking</h3>
+            <p class="text-xs text-slate-400 mt-1">Neobanks &amp; core engines</p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-fintech-border bg-fintech-card/30 hover:border-fintech-accent/50 transition-all group cursor-pointer">
+            <i data-lucide="bot" class="w-6 h-6 text-fintech-accent mb-3"></i>
+            <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-fintech-accent transition-colors">AI &amp; Machine Learning</h3>
+            <p class="text-xs text-slate-400 mt-1">Risk, scoring, &amp; detection</p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-fintech-border bg-fintech-card/30 hover:border-fintech-accent/50 transition-all group cursor-pointer">
+            <i data-lucide="boxes" class="w-6 h-6 text-fintech-accent mb-3"></i>
+            <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-fintech-accent transition-colors">Blockchain</h3>
+            <p class="text-xs text-slate-400 mt-1">DeFi, RWA, &amp; ledgers</p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-fintech-border bg-fintech-card/30 hover:border-fintech-accent/50 transition-all group cursor-pointer">
+            <i data-lucide="key-round" class="w-6 h-6 text-fintech-accent mb-3"></i>
+            <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-fintech-accent transition-colors">Open Banking</h3>
+            <p class="text-xs text-slate-400 mt-1">APIs &amp; financial data access</p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-fintech-border bg-fintech-card/30 hover:border-fintech-accent/50 transition-all group cursor-pointer">
+            <i data-lucide="shield-check" class="w-6 h-6 text-fintech-accent mb-3"></i>
+            <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-fintech-accent transition-colors">RegTech</h3>
+            <p class="text-xs text-slate-400 mt-1">Compliance &amp; identity</p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-fintech-border bg-fintech-card/30 hover:border-fintech-accent/50 transition-all group cursor-pointer">
+            <i data-lucide="trending-up" class="w-6 h-6 text-fintech-accent mb-3"></i>
+            <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-fintech-accent transition-colors">WealthTech</h3>
+            <p class="text-xs text-slate-400 mt-1">Robo-advisors &amp; trading</p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-fintech-border bg-fintech-card/30 hover:border-fintech-accent/50 transition-all group cursor-pointer">
+            <i data-lucide="heart-handshake" class="w-6 h-6 text-fintech-accent mb-3"></i>
+            <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-fintech-accent transition-colors">Inclusion</h3>
+            <p class="text-xs text-slate-400 mt-1">Financial accessibility</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="courses" class="py-20 border-b border-fintech-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Learn What's Next</h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-2">Structured, practical curriculum created for industry practitioners.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="rounded-xl border border-fintech-border bg-fintech-card overflow-hidden flex flex-col justify-between group hover:border-fintech-blue transition-all">
+            <div class="p-6 space-y-4">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-fintech-accent bg-fintech-blue/10 px-2.5 py-1 rounded">Beginner</span>
+                <span class="text-slate-400">6 Hours</span>
+              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-fintech-accent transition-colors">FinTech Fundamentals</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Master the core terminology, architectural building blocks, and regulatory landscapes shaping contemporary digital finance.
+              </p>
+            </div>
+            <div class="p-6 border-t border-fintech-border/50 bg-black/20">
+              <a href="#" class="w-full py-2.5 rounded-lg border border-fintech-border hover:bg-fintech-blue text-white font-semibold text-xs flex items-center justify-center gap-2 transition-colors">View Course <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-fintech-border bg-fintech-card overflow-hidden flex flex-col justify-between group hover:border-fintech-blue transition-all">
+            <div class="p-6 space-y-4">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-fintech-accent bg-fintech-blue/10 px-2.5 py-1 rounded">Intermediate</span>
+                <span class="text-slate-400">8 Hours</span>
+              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-fintech-accent transition-colors">Digital Payments &amp; Open Banking</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Deep dive into card network processing, ISO 20022 messaging formats, RESTful financial APIs, and open data compliance.
+              </p>
+            </div>
+            <div class="p-6 border-t border-fintech-border/50 bg-black/20">
+              <a href="#" class="w-full py-2.5 rounded-lg border border-fintech-border hover:bg-fintech-blue text-white font-semibold text-xs flex items-center justify-center gap-2 transition-colors">View Course <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-fintech-border bg-fintech-card overflow-hidden flex flex-col justify-between group hover:border-fintech-blue transition-all">
+            <div class="p-6 space-y-4">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-fintech-accent bg-fintech-blue/10 px-2.5 py-1 rounded">Intermediate</span>
+                <span class="text-slate-400">7 Hours</span>
+              </div>
+              <h3 class="text-xl font-bold text-white group-hover:text-fintech-accent transition-colors">AI in Financial Services</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Practical execution of machine learning models for anti-money laundering (AML), automated underwriting, and algorithmic fraud prevention.
+              </p>
+            </div>
+            <div class="p-6 border-t border-fintech-border/50 bg-black/20">
+              <a href="#" class="w-full py-2.5 rounded-lg border border-fintech-border hover:bg-fintech-blue text-white font-semibold text-xs flex items-center justify-center gap-2 transition-colors">View Course <i data-lucide="chevron-right" class="w-4 h-4"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-20 border-b border-fintech-border bg-slate-900/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">More Than Fintech Content</h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-2">A centralized knowledge ecosystem designed specifically for finance and technology innovators.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-fintech-blue/20 flex items-center justify-center text-fintech-accent">
+              <i data-lucide="headphones" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Listen</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Direct dialogues with executives, founders, and core developers shaping financial technology.</p>
+          </div>
+
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-fintech-blue/20 flex items-center justify-center text-fintech-accent">
+              <i data-lucide="book-open" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Learn</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Actionable, structured modules engineered to bridge the knowledge gap in modern banking infrastructure.</p>
+          </div>
+
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-fintech-blue/20 flex items-center justify-center text-fintech-accent">
+              <i data-lucide="compass" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Discover</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Editorial breakdowns of complex regulatory changes, technical protocols, and market movements.</p>
+          </div>
+
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-fintech-blue/20 flex items-center justify-center text-fintech-accent">
+              <i data-lucide="users" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Connect</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Engage with a peer network of engineers, product leaders, and investors globally.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 border-b border-fintech-border bg-fintech-card/30" id="stats-section">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          <div>
+            <div class="text-4xl font-extrabold text-white font-mono counter" data-target="10000">0</div>
+            <p class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-medium">Monthly Readers</p>
+          </div>
+          <div>
+            <div class="text-4xl font-extrabold text-white font-mono counter" data-target="50">0</div>
+            <p class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-medium">Podcast Episodes</p>
+          </div>
+          <div>
+            <div class="text-4xl font-extrabold text-white font-mono counter" data-target="25">0</div>
+            <p class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-medium">Industry Guest Leaders</p>
+          </div>
+          <div>
+            <div class="text-4xl font-extrabold text-white font-mono counter" data-target="5000">0</div>
+            <p class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-medium">Community Members</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 border-b border-fintech-border relative overflow-hidden">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Stay Ahead of Fintech.</h2>
+        <p class="text-slate-600 dark:text-slate-400 mt-3 max-w-xl mx-auto text-sm">
+          Receive curated editorial breakdowns, episode releases, and structural financial analysis directly to your inbox.
+        </p>
+
+        <form id="newsletter-form" class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <input 
+            type="email" 
+            required 
+            placeholder="Enter your email" 
+            class="px-4 py-3 rounded-lg bg-fintech-card border border-fintech-border text-white placeholder-slate-500 focus:outline-none focus:border-fintech-accent flex-1 text-sm"
+          />
+          <button type="submit" class="px-6 py-3 rounded-lg bg-fintech-blue hover:bg-blue-600 text-white font-semibold text-sm transition-all shadow-lg shadow-fintech-blue/20">
+            Subscribe →
+          </button>
+        </form>
+        <p id="newsletter-message" class="text-xs text-fintech-accent mt-3 hidden">You're on the list. Welcome to FintOps.</p>
+        <p class="text-[11px] text-slate-500 mt-2">No spam. Just useful fintech insights.</p>
+      </div>
+    </section>
+
+    <section class="py-24 bg-gradient-to-b from-transparent to-fintech-blue/10 relative">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <h2 class="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">The Future of Finance Is Already Here.</h2>
+        <p class="text-slate-600 dark:text-slate-400 text-lg">Listen. Learn. Stay ahead.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <a href="#podcast" class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-fintech-accent text-slate-950 font-bold hover:bg-cyan-300 transition-colors shadow-lg shadow-fintech-accent/20">Explore Podcasts</a>
+          <a href="#courses" class="w-full sm:w-auto px-8 py-3.5 rounded-lg border border-fintech-border text-slate-900 dark:text-white font-semibold hover:bg-white/5 transition-colors">Explore Courses</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-fintech-border bg-fintech-bg text-xs text-slate-400 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-5 gap-10">
+      
+      <div class="md:col-span-2 space-y-4">
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded bg-gradient-to-tr from-fintech-blue to-fintech-accent flex items-center justify-center text-white font-bold text-xs">F</div>
+          <span class="text-lg font-bold text-white">Fint<span class="text-fintech-accent">Ops</span></span>
+        </div>
+        <p class="text-slate-400 leading-relaxed max-w-xs">
+          Exploring fintech through conversations, insights, and structured education.
+        </p>
+        <p class="text-slate-500 font-mono">contact@fintops.info</p>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-slate-200 uppercase tracking-wider mb-4">Explore</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#podcast" class="hover:text-white transition-colors">Podcast</a></li>
+          <li><a href="#articles" class="hover:text-white transition-colors">Articles</a></li>
+          <li><a href="#courses" class="hover:text-white transition-colors">Courses</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Categories</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-slate-200 uppercase tracking-wider mb-4">Company</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Partnerships</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-slate-200 uppercase tracking-wider mb-4">Connect</h4>
+        <ul class="space-y-2.5">
+          <li><a href="https://www.linkedin.com/company/fint-ops/" target="_blank" rel="noopener" class="hover:text-white transition-colors">LinkedIn</a></li>
+          <li><a href="https://x.com/FintopsS" target="_blank" rel="noopener" class="hover:text-white transition-colors">X / Twitter</a></li>
+          <li><a href="https://www.instagram.com/fintoperation/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Instagram</a></li>
+          <li><a href="https://www.facebook.com/fintops" target="_blank" rel="noopener" class="hover:text-white transition-colors">Facebook</a></li>
+          <li><a href="https://pin.it/226CaWt51" target="_blank" rel="noopener" class="hover:text-white transition-colors">Pinterest</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 mt-12 border-t border-fintech-border/50 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p>© 2026 FintOps. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="search-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-start justify-center pt-20 px-4 hidden">
+    <div class="bg-fintech-card border border-fintech-border rounded-xl w-full max-w-xl p-4 shadow-2xl space-y-4">
+      <div class="flex items-center gap-3 border-b border-fintech-border pb-3">
+        <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
+        <input id="search-input" type="text" placeholder="Search FintOps podcasts, articles, courses..." class="bg-transparent text-white w-full focus:outline-none text-sm" />
+        <button id="close-search" class="text-xs text-slate-400 font-mono px-2 py-1 bg-white/10 rounded">ESC</button>
+      </div>
+      <div id="search-results" class="space-y-2 max-h-60 overflow-y-auto text-xs text-slate-300">
+        <p class="text-slate-500 py-2">Type to search for topics, episodes, or modules...</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
