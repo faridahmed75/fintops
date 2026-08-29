@@ -2,6 +2,9 @@
 
 FintOps is a modern, responsive web application designed for financial technology practitioners, researchers, and engineers. It provides media coverage, podcasts, domain breakdowns, and educational coursework focused on digital banking, payment rails, AI in finance, and blockchain technology.
 
+## 🚀 Live Demo
+- **Portfolio:** [FintOps](https://faridahmed75.github.io/fintops/) <!-- Replace with your actual live domain or GitHub Pages link -->
+
 ## Project Structure
 
 The project is structured into separate HTML, CSS, JavaScript, and configuration files for standard development workflows, while remaining easy to bundle or inline for WordPress and Elementor deployments.
